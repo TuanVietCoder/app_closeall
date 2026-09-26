@@ -43,6 +43,8 @@ function Tat-Het {
   $ds = @(Lay-DanhSach)
   # Dong nhe nhang truoc (nhu bam X), cho 5s roi moi ep tat
   foreach ($p in $ds) { try { [void]$p.CloseMainWindow() } catch {} }
+  # Dong cac cua so thu muc File Explorer (giu lai taskbar/Start)
+  try { (New-Object -ComObject Shell.Application).Windows() | ForEach-Object { $_.Quit() } } catch {}
   $het = (Get-Date).AddSeconds(5)
   while ((Get-Date) -lt $het) { [Windows.Forms.Application]::DoEvents(); Start-Sleep -Milliseconds 100 }
   foreach ($p in $ds) { Stop-Process -Id $p.Id -Force -ErrorAction SilentlyContinue }
