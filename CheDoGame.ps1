@@ -11,7 +11,8 @@ $giuLai = @(
   'nvcontainer','NVDisplay.Container','nvsphelper64','NVIDIA Overlay','RadeonSoftware','AMDRSServ',
   'atiesrxx','atieclxx','igfxEM','RtkAudUService64','RtkNGUI64','NahimicSvc64',
   'SynTPEnh','ETDCtrl','ETDTouch','lghub','lghub_agent','RazerCentralService',
-  'UniKeyNT','EVKey64','EVKey'   # bo go tieng Viet de chat trong game
+  'UniKeyNT','EVKey64','EVKey',   # bo go tieng Viet de chat trong game
+  'RTSS','RTSSHooksLoader','RTSSHooksLoader64','EncoderServer','EncoderServer64'   # RivaTuner: hien/gioi han FPS
 )
 
 # Dich vu Windows an CPU/o dia khi choi (chi TAM dung, bam "bat lai" hoac khoi dong lai may la chay lai)
