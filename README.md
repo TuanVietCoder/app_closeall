@@ -1,5 +1,7 @@
 # closeall – Chế độ Game
 
+🇻🇳 Tiếng Việt · [🇬🇧 English](#english)
+
 Một nút bấm tắt hết app/dịch vụ chạy ngầm để chơi game (vd Elden Ring) mượt nhất trên Windows.
 
 ## Dùng
@@ -30,3 +32,39 @@ File tải từ Internet bị Windows đánh dấu "không rõ nguồn gốc", n
 > Chỉ tải từ đúng repo này. Đừng chạy bản do người khác gửi qua chat/Drive.
 
 > ⚠️ Lưu công việc trước khi bấm – app không tự đóng sau 5 giây sẽ bị ép tắt.
+
+---
+
+<a id="english"></a>
+# closeall – Game Mode (English)
+
+One button that closes every app and background service so your games (e.g. Elden Ring) run as smoothly as possible on Windows.
+
+## Usage
+Double-click `CheDoGame.bat` (it asks for Admin rights) → click **TAT HET DE CHOI GAME** ("close everything to play").
+When done, click **Choi xong - bat lai nhu cu** ("done playing – restore everything").
+
+## What it does
+- Closes open apps + third-party background apps (keeps Steam, anti-cheat, drivers, Vietnamese keyboard tools).
+- Temporarily stops resource-heavy Windows services: Update, Search, SysMain, Telemetry, Delivery Optimization, Print Spooler…
+- Turns off Defender real-time protection (if Tamper Protection blocks it, the settings page opens so you can flip it manually).
+- Switches the power plan to High Performance.
+
+Edit the `$giuLai` (keep list) / `$dichVu` (services list) at the top of `CheDoGame.ps1` to fit your setup.
+
+## Blocked by Windows after downloading?
+Files downloaded from the Internet are marked as "unknown origin", so Windows may block them. To unblock:
+
+1. **Unblock the ZIP before extracting**: right-click the `.zip` → **Properties** → tick **Unblock** → OK → then extract.
+   Or, after extracting, open PowerShell in the folder and run:
+   ```powershell
+   Get-ChildItem | Unblock-File
+   ```
+2. **SmartScreen says "Windows protected your PC"**: click **More info** → **Run anyway**.
+3. **UAC asks for Admin rights**: click **Yes** (needed to stop services + turn off Defender).
+4. **Defender/antivirus flags it**: the script turns off real-time protection, so it is sometimes misdetected. **Read `CheDoGame.ps1` first** (it is short, Notepad is enough). If it looks fine, go to *Windows Security → Protection history* → select the blocked item → **Allow on device**.
+5. **Smart App Control is on**: Windows blocks downloaded scripts outright, with no allow button. The only way is to turn Smart App Control off, and **once off it cannot be turned back on** without reinstalling Windows. Think carefully before doing this.
+
+> Only download from this repo. Don't run copies sent to you via chat/Drive.
+
+> ⚠️ Save your work first – apps that don't close within 5 seconds are force-killed.
