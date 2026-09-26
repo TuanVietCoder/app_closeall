@@ -1,4 +1,5 @@
 ﻿# Che do Game - 1 nut tat het app/dich vu ngam de choi game muot nhat.
+# Tac gia: Tuan Viet - https://github.com/TuanVietCoder/closeall
 # Chay bang CheDoGame.bat (tu xin quyen Admin). Sua danh sach duoi day theo y ban.
 
 # Khong bao gio tat: he thong, launcher/anti-cheat, driver am thanh/touchpad/card do hoa
@@ -73,7 +74,7 @@ function Bat-Lai {
 }
 
 $form = New-Object Windows.Forms.Form -Property @{
-  Text = 'Che do Game'; Size = '380,280'; StartPosition = 'CenterScreen'
+  Text = 'Che do Game - by Tuan Viet'; Size = '380,280'; StartPosition = 'CenterScreen'
   FormBorderStyle = 'FixedDialog'; MaximizeBox = $false
 }
 $nut = New-Object Windows.Forms.Button -Property @{

@@ -2,6 +2,8 @@
 
 🇻🇳 Tiếng Việt · [🇬🇧 English](#english)
 
+**Tác giả / Author:** Tuan Viet ([@TuanVietCoder](https://github.com/TuanVietCoder))
+
 Một nút bấm tắt hết app/dịch vụ chạy ngầm để chơi game (vd Elden Ring) mượt nhất trên Windows.
 
 ## Dùng
