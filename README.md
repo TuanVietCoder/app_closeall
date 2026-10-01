@@ -15,6 +15,7 @@ Chơi xong bấm **Chơi xong – bật lại như cũ**.
 - Tạm dừng dịch vụ Windows ngốn tài nguyên: Update, Search, SysMain, Telemetry, Delivery Optimization, Print Spooler…
 - Tắt Defender real-time (nếu Tamper Protection chặn thì mở trang cài đặt để gạt tay).
 - Chuyển nguồn sang High Performance.
+- Tự mở RivaTuner (RTSS) để khóa FPS nếu máy có cài.
 
 Sửa danh sách `$giuLai` / `$dichVu` ở đầu `CheDoGame.ps1` theo ý.
 
@@ -51,6 +52,7 @@ When done, click **Choi xong - bat lai nhu cu** ("done playing – restore every
 - Temporarily stops resource-heavy Windows services: Update, Search, SysMain, Telemetry, Delivery Optimization, Print Spooler…
 - Turns off Defender real-time protection (if Tamper Protection blocks it, the settings page opens so you can flip it manually).
 - Switches the power plan to High Performance.
+- Auto-starts RivaTuner (RTSS) for FPS limiting, if installed.
 
 Edit the `$giuLai` (keep list) / `$dichVu` (services list) at the top of `CheDoGame.ps1` to fit your setup.
 

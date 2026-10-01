@@ -27,6 +27,12 @@ if (-not $admin) {
   exit
 }
 
+# Mo RivaTuner (RTSS, khoa FPS) neu chua chay
+if (-not (Get-Process RTSS -ErrorAction SilentlyContinue)) {
+  $rtss = (Get-ItemProperty 'HKLM:\SOFTWARE\WOW6432Node\Unwinder\RTSS' -ErrorAction SilentlyContinue).InstallDir
+  if ($rtss -and (Test-Path "$rtss\RTSS.exe")) { Start-Process "$rtss\RTSS.exe" }
+}
+
 Add-Type -AssemblyName System.Windows.Forms
 
 # App co cua so + moi app chay ngam cua ben thu 3 (file nam ngoai C:\Windows)
