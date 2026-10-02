@@ -40,6 +40,7 @@ function Lay-DanhSach {
   $sid = (Get-Process -Id $PID).SessionId
   Get-Process | Where-Object {
     $_.Id -ne $PID -and $_.SessionId -eq $sid -and $giuLai -notcontains $_.ProcessName -and
+    $_.Path -notlike '*Riot*' -and   # khong dung vao Riot Client/Vanguard/LMHT/Valorant
     ($_.MainWindowHandle -ne 0 -or ($_.Path -and $_.Path -notlike "$env:windir\*"))
   }
 }

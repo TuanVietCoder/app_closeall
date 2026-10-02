@@ -11,7 +11,7 @@ Nhấp đúp `CheDoGame.bat` (tự xin quyền Admin) → bấm **TẮT HẾT Đ
 Chơi xong bấm **Chơi xong – bật lại như cũ**.
 
 ## Làm gì
-- Tắt app đang mở + app chạy ngầm bên thứ 3 (giữ lại Steam, anti-cheat, driver, bộ gõ tiếng Việt).
+- Tắt app đang mở + app chạy ngầm bên thứ 3 (giữ lại Steam, Riot (LMHT/Valorant/Vanguard), anti-cheat, driver, bộ gõ tiếng Việt).
 - Tạm dừng dịch vụ Windows ngốn tài nguyên: Update, Search, SysMain, Telemetry, Delivery Optimization, Print Spooler…
 - Tắt Defender real-time (nếu Tamper Protection chặn thì mở trang cài đặt để gạt tay).
 - Chuyển nguồn sang High Performance.
@@ -48,7 +48,7 @@ Double-click `CheDoGame.bat` (it asks for Admin rights) → click **TAT HET DE C
 When done, click **Choi xong - bat lai nhu cu** ("done playing – restore everything").
 
 ## What it does
-- Closes open apps + third-party background apps (keeps Steam, anti-cheat, drivers, Vietnamese keyboard tools).
+- Closes open apps + third-party background apps (keeps Steam, Riot (LoL/Valorant/Vanguard), anti-cheat, drivers, Vietnamese keyboard tools).
 - Temporarily stops resource-heavy Windows services: Update, Search, SysMain, Telemetry, Delivery Optimization, Print Spooler…
 - Turns off Defender real-time protection (if Tamper Protection blocks it, the settings page opens so you can flip it manually).
 - Switches the power plan to High Performance.
