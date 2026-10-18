@@ -2,25 +2,31 @@
 # Tac gia: Tuan Viet - https://github.com/TuanVietCoder/closeall
 # Chay bang CheDoGame.bat (tu xin quyen Admin). Sua danh sach duoi day theo y ban.
 
-# Khong bao gio tat: he thong, launcher/anti-cheat, driver am thanh/touchpad/card do hoa
+# Khong bao gio tat: he thong, launcher/anti-cheat, driver, cong cu choi game
 $giuLai = @(
+  # He thong Windows
   'explorer','dwm','ShellExperienceHost','StartMenuExperienceHost','SearchHost','TextInputHost',
   'ApplicationFrameHost','LockApp','ctfmon','audiodg',
-  'steam','steamwebhelper','steamservice','eldenring','start_protected_game',
+  # Launcher + game + anti-cheat (Riot duoc giu rieng theo thu muc, xem Lay-DanhSach)
+  'steam','steamwebhelper','steamservice','eldenring','start_protected_game','modengine2_launcher',
   'EasyAntiCheat','EasyAntiCheat_EOS',
+  # Driver card do hoa / am thanh / touchpad / chuot
   'nvcontainer','NVDisplay.Container','nvsphelper64','NVIDIA Overlay','RadeonSoftware','AMDRSServ',
   'atiesrxx','atieclxx','igfxEM','RtkAudUService64','RtkNGUI64','NahimicSvc64',
   'SynTPEnh','ETDCtrl','ETDTouch','lghub','lghub_agent','RazerCentralService',
-  'UniKeyNT','EVKey64','EVKey',   # bo go tieng Viet de chat trong game
-  'RTSS','RTSSHooksLoader','RTSSHooksLoader64','EncoderServer','EncoderServer64'   # RivaTuner: hien/gioi han FPS
+  # Bo go tieng Viet de chat trong game
+  'UniKeyNT','EVKey64','EVKey',
+  # Cong cu FPS: RivaTuner, MSI Afterburner, Lossless Scaling
+  'RTSS','RTSSHooksLoader','RTSSHooksLoader64','EncoderServer','EncoderServer64',
+  'MSIAfterburner','LosslessScaling'
 )
 
-# Dich vu Windows an CPU/o dia khi choi (chi TAM dung, bam "bat lai" hoac khoi dong lai may la chay lai)
+# Dich vu Windows an CPU/o dia khi choi (chi TAM dung, bam "bat lai" hoac Restart may la chay lai)
 $dichVu = @('SysMain','WSearch','DiagTrack','wuauserv','UsoSvc','BITS','DoSvc','Spooler','MapsBroker','WerSvc')
 
 $state = "$env:TEMP\CheDoGame.json"
 
-# Tu xin quyen Admin (can de dung dich vu + tat Defender)
+# Tu xin quyen Admin (can de dung dich vu)
 $admin = ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole('Administrators')
 if (-not $admin) {
   Start-Process powershell "-NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File `"$PSCommandPath`"" -Verb RunAs
@@ -45,8 +51,6 @@ function Lay-DanhSach {
   }
 }
 
-function Defender-Bat { (Get-MpComputerStatus).RealTimeProtectionEnabled }
-
 function Tat-Het {
   $ds = @(Lay-DanhSach)
   # Dong nhe nhang truoc (nhu bam X), cho 5s roi moi ep tat
@@ -68,13 +72,11 @@ function Tat-Het {
     @{ dichVu = @($dv.Name); nguon = $nguon } | ConvertTo-Json | Set-Content $state
   }
 
-  try { Set-MpPreference -DisableRealtimeMonitoring $true -ErrorAction Stop } catch {}
   [GC]::Collect()
   return ($ds.ProcessName | Sort-Object -Unique)
 }
 
 function Bat-Lai {
-  try { Set-MpPreference -DisableRealtimeMonitoring $false -ErrorAction Stop } catch {}
   if (Test-Path $state) {
     $s = Get-Content $state -Raw | ConvertFrom-Json
     foreach ($d in $s.dichVu) { Start-Service $d -ErrorAction SilentlyContinue }
@@ -100,29 +102,18 @@ $nutBatLai = New-Object Windows.Forms.Button -Property @{
 $nut.Add_Click({
   $ten = (Lay-DanhSach).ProcessName | Sort-Object -Unique
   $ok = [Windows.Forms.MessageBox]::Show($form,
-    "Se tat $(@($ten).Count) app:`n$($ten -join ', ')`n`n+ Tam dung dich vu ngam (Update, Search, SysMain...)`n+ Tat Virus real-time, bat High Performance`n`nHay LUU cong viec truoc! Tiep tuc?",
+    "Se tat $(@($ten).Count) app:`n$($ten -join ', ')`n`n+ Tam dung dich vu ngam (Update, Search, SysMain...)`n+ Bat High Performance`n`nHay LUU cong viec truoc! Tiep tuc?",
     'Che do Game', 'YesNo', 'Warning')
   if ($ok -ne 'Yes') { return }
   $nut.Enabled = $false; $nut.Text = 'Dang tat...'; [Windows.Forms.Application]::DoEvents()
   $da = Tat-Het
-  $msg = "Da tat $(@($da).Count) app + dich vu ngam. Chuc choi vui!"
-  if (Defender-Bat) {
-    # Tamper Protection chan tat bang lenh -> mo trang cai dat de gat tay 1 cai
-    Start-Process 'windowsdefender://threatsettings'
-    $msg += "`n`nWindows chan tat Virus bang lenh. Hay gat 'Real-time protection' sang OFF trong cua so vua mo."
-  }
-  [void][Windows.Forms.MessageBox]::Show($form, $msg, 'Che do Game')
+  [void][Windows.Forms.MessageBox]::Show($form, "Da tat $(@($da).Count) app + dich vu ngam. Chuc choi vui!", 'Che do Game')
   $nut.Text = "🎮  DA BAT CHE DO GAME"; $nut.Enabled = $true
 })
 
 $nutBatLai.Add_Click({
   Bat-Lai
-  $msg = 'Da bat lai dich vu + nguon dien nhu cu.'
-  if (-not (Defender-Bat)) {
-    Start-Process 'windowsdefender://threatsettings'
-    $msg += "`nHay gat 'Real-time protection' sang ON trong cua so vua mo."
-  } else { $msg += "`nVirus real-time da BAT lai." }
-  [void][Windows.Forms.MessageBox]::Show($form, $msg, 'Che do Game')
+  [void][Windows.Forms.MessageBox]::Show($form, 'Da bat lai dich vu + nguon dien nhu cu.', 'Che do Game')
   $form.Close()
 })
 

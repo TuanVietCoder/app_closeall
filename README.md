@@ -11,7 +11,8 @@ Nhấp đúp `CheDoGame.bat` (tự xin quyền Admin) → bấm **TẮT HẾT Đ
 Chơi xong bấm **Chơi xong – bật lại như cũ**.
 
 ## Làm gì
-- Tắt app đang mở + app chạy ngầm bên thứ 3 (giữ lại Steam, Riot (LMHT/Valorant/Vanguard), anti-cheat, driver, bộ gõ tiếng Việt).
+- Tắt app đang mở + app chạy ngầm bên thứ 3, ví dụ: trình duyệt (Edge, Chrome, Brave, Opera, Cốc Cốc), Discord, Zalo, Office, VS Code, Node, OneDrive, Wallpaper Engine, Widgets, Phone Link, Claude…
+- **Giữ lại:** Steam, Riot (LMHT/Valorant/Vanguard), anti-cheat, driver card/âm thanh/touchpad/chuột, bộ gõ tiếng Việt, RivaTuner (RTSS), MSI Afterburner, Lossless Scaling.
 - Tạm dừng dịch vụ Windows ngốn tài nguyên: Update, Search, SysMain, Telemetry, Delivery Optimization, Print Spooler…
 - Tắt Defender real-time (nếu Tamper Protection chặn thì mở trang cài đặt để gạt tay).
 - Chuyển nguồn sang High Performance.
@@ -28,8 +29,8 @@ File tải từ Internet bị Windows đánh dấu "không rõ nguồn gốc", n
    Get-ChildItem | Unblock-File
    ```
 2. **SmartScreen hiện "Windows protected your PC"**: bấm **More info** → **Run anyway**.
-3. **Hộp UAC hỏi quyền Admin**: bấm **Yes** (cần để dừng dịch vụ + tắt Defender).
-4. **Defender/antivirus báo nguy hiểm**: script có lệnh tắt real-time protection nên đôi khi bị nhận nhầm. Hãy **đọc `CheDoGame.ps1` trước** (code ngắn, mở bằng Notepad là xem được). Nếu thấy ổn thì vào *Windows Security → Protection history* → chọn mục bị chặn → **Allow on device**.
+3. **Hộp UAC hỏi quyền Admin**: bấm **Yes** (cần để dừng dịch vụ).
+4. **Defender/antivirus báo nguy hiểm**: script tắt nhiều tiến trình nên đôi khi bị nhận nhầm. Hãy **đọc `CheDoGame.ps1` trước** (code ngắn, mở bằng Notepad là xem được). Nếu thấy ổn thì vào *Windows Security → Protection history* → chọn mục bị chặn → **Allow on device**.
 5. **Smart App Control đang bật** thì Windows chặn hẳn script tải về, không có nút cho phép. Cách duy nhất là tắt Smart App Control, và **tắt rồi thì không bật lại được** nếu không cài lại Windows. Cân nhắc kỹ trước khi làm.
 
 > Chỉ tải từ đúng repo này. Đừng chạy bản do người khác gửi qua chat/Drive.
@@ -48,7 +49,8 @@ Double-click `CheDoGame.bat` (it asks for Admin rights) → click **TAT HET DE C
 When done, click **Choi xong - bat lai nhu cu** ("done playing – restore everything").
 
 ## What it does
-- Closes open apps + third-party background apps (keeps Steam, Riot (LoL/Valorant/Vanguard), anti-cheat, drivers, Vietnamese keyboard tools).
+- Closes open apps + third-party background apps, e.g. browsers (Edge, Chrome, Brave, Opera, Coc Coc), Discord, Zalo, Office, VS Code, Node, OneDrive, Wallpaper Engine, Widgets, Phone Link, Claude…
+- **Keeps:** Steam, Riot (LoL/Valorant/Vanguard), anti-cheat, graphics/audio/touchpad/mouse drivers, Vietnamese keyboard tools, RivaTuner (RTSS), MSI Afterburner, Lossless Scaling.
 - Temporarily stops resource-heavy Windows services: Update, Search, SysMain, Telemetry, Delivery Optimization, Print Spooler…
 - Turns off Defender real-time protection (if Tamper Protection blocks it, the settings page opens so you can flip it manually).
 - Switches the power plan to High Performance.
@@ -65,8 +67,8 @@ Files downloaded from the Internet are marked as "unknown origin", so Windows ma
    Get-ChildItem | Unblock-File
    ```
 2. **SmartScreen says "Windows protected your PC"**: click **More info** → **Run anyway**.
-3. **UAC asks for Admin rights**: click **Yes** (needed to stop services + turn off Defender).
-4. **Defender/antivirus flags it**: the script turns off real-time protection, so it is sometimes misdetected. **Read `CheDoGame.ps1` first** (it is short, Notepad is enough). If it looks fine, go to *Windows Security → Protection history* → select the blocked item → **Allow on device**.
+3. **UAC asks for Admin rights**: click **Yes** (needed to stop services).
+4. **Defender/antivirus flags it**: the script kills many processes, so it is sometimes misdetected. **Read `CheDoGame.ps1` first** (it is short, Notepad is enough). If it looks fine, go to *Windows Security → Protection history* → select the blocked item → **Allow on device**.
 5. **Smart App Control is on**: Windows blocks downloaded scripts outright, with no allow button. The only way is to turn Smart App Control off, and **once off it cannot be turned back on** without reinstalling Windows. Think carefully before doing this.
 
 > Only download from this repo. Don't run copies sent to you via chat/Drive.
