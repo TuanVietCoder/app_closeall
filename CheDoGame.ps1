@@ -14,10 +14,9 @@ $giuLai = @(
   'nvcontainer','NVDisplay.Container','nvsphelper64','NVIDIA Overlay','RadeonSoftware','AMDRSServ',
   'atiesrxx','atieclxx','igfxEM','RtkAudUService64','RtkNGUI64','NahimicSvc64',
   'SynTPEnh','ETDCtrl','ETDTouch','lghub','lghub_agent','RazerCentralService',
-  # Bo go tieng Viet de chat trong game
-  'UniKeyNT','EVKey64','EVKey',
-  # Cong cu FPS: RivaTuner, MSI Afterburner, Lossless Scaling
-  'RTSS','RTSSHooksLoader','RTSSHooksLoader64','EncoderServer','EncoderServer64',
+  # Bo go tieng Viet + Discord de chat/voice trong game
+  'UniKeyNT','EVKey64','EVKey','Discord',
+  # Cong cu FPS: MSI Afterburner, Lossless Scaling
   'MSIAfterburner','LosslessScaling'
 )
 
@@ -31,12 +30,6 @@ $admin = ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdenti
 if (-not $admin) {
   Start-Process powershell "-NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File `"$PSCommandPath`"" -Verb RunAs
   exit
-}
-
-# Mo RivaTuner (RTSS, khoa FPS) neu chua chay
-if (-not (Get-Process RTSS -ErrorAction SilentlyContinue)) {
-  $rtss = (Get-ItemProperty 'HKLM:\SOFTWARE\WOW6432Node\Unwinder\RTSS' -ErrorAction SilentlyContinue).InstallDir
-  if ($rtss -and (Test-Path "$rtss\RTSS.exe")) { Start-Process "$rtss\RTSS.exe" }
 }
 
 Add-Type -AssemblyName System.Windows.Forms

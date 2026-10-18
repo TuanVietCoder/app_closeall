@@ -11,11 +11,10 @@ Nhấp đúp `CheDoGame.bat` (tự xin quyền Admin) → bấm **TẮT HẾT Đ
 Chơi xong bấm **Chơi xong – bật lại như cũ**.
 
 ## Làm gì
-- Tắt app đang mở + app chạy ngầm bên thứ 3, ví dụ: trình duyệt (Edge, Chrome, Brave, Opera, Cốc Cốc), Discord, Zalo, Office, VS Code, Node, OneDrive, Wallpaper Engine, Widgets, Phone Link, Claude…
-- **Giữ lại:** Steam, Riot (LMHT/Valorant/Vanguard), anti-cheat, driver card/âm thanh/touchpad/chuột, bộ gõ tiếng Việt, RivaTuner (RTSS), MSI Afterburner, Lossless Scaling.
+- Tắt app đang mở + app chạy ngầm bên thứ 3, ví dụ: trình duyệt (Edge, Chrome, Brave, Opera, Cốc Cốc), Zalo, Office, VS Code, Node, OneDrive, Wallpaper Engine, RivaTuner (RTSS), Widgets, Phone Link, Claude…
+- **Giữ lại:** Steam, Riot (LMHT/Valorant/Vanguard), anti-cheat, driver card/âm thanh/touchpad/chuột, bộ gõ tiếng Việt, Discord (voice chat), MSI Afterburner, Lossless Scaling.
 - Tạm dừng dịch vụ Windows ngốn tài nguyên: Update, Search, SysMain, Telemetry, Delivery Optimization, Print Spooler…
 - Chuyển nguồn sang High Performance.
-- Tự mở RivaTuner (RTSS) để khóa FPS nếu máy có cài.
 
 Sửa danh sách `$giuLai` / `$dichVu` ở đầu `CheDoGame.ps1` theo ý.
 
@@ -48,11 +47,10 @@ Double-click `CheDoGame.bat` (it asks for Admin rights) → click **TAT HET DE C
 When done, click **Choi xong - bat lai nhu cu** ("done playing – restore everything").
 
 ## What it does
-- Closes open apps + third-party background apps, e.g. browsers (Edge, Chrome, Brave, Opera, Coc Coc), Discord, Zalo, Office, VS Code, Node, OneDrive, Wallpaper Engine, Widgets, Phone Link, Claude…
-- **Keeps:** Steam, Riot (LoL/Valorant/Vanguard), anti-cheat, graphics/audio/touchpad/mouse drivers, Vietnamese keyboard tools, RivaTuner (RTSS), MSI Afterburner, Lossless Scaling.
+- Closes open apps + third-party background apps, e.g. browsers (Edge, Chrome, Brave, Opera, Coc Coc), Zalo, Office, VS Code, Node, OneDrive, Wallpaper Engine, RivaTuner (RTSS), Widgets, Phone Link, Claude…
+- **Keeps:** Steam, Riot (LoL/Valorant/Vanguard), anti-cheat, graphics/audio/touchpad/mouse drivers, Vietnamese keyboard tools, Discord (voice chat), MSI Afterburner, Lossless Scaling.
 - Temporarily stops resource-heavy Windows services: Update, Search, SysMain, Telemetry, Delivery Optimization, Print Spooler…
 - Switches the power plan to High Performance.
-- Auto-starts RivaTuner (RTSS) for FPS limiting, if installed.
 
 Edit the `$giuLai` (keep list) / `$dichVu` (services list) at the top of `CheDoGame.ps1` to fit your setup.
 
