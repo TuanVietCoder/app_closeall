@@ -10,6 +10,8 @@ Một nút bấm tắt hết app/dịch vụ chạy ngầm để chơi game (vd 
 Nhấp đúp `CheDoGame.bat` (tự xin quyền Admin) → bấm **TẮT HẾT ĐỂ CHƠI GAME**.
 Chơi xong bấm **Chơi xong – bật lại như cũ**.
 
+**Icon ngoài Desktop:** chuột phải CheDoGame.bat → *Send to → Desktop (create shortcut)* → chuột phải shortcut → *Properties → Change Icon* → chọn CheDoGame.ico.
+
 ## Làm gì
 - Tắt app đang mở + app chạy ngầm bên thứ 3, ví dụ: trình duyệt (Edge, Chrome, Brave, Opera, Cốc Cốc), Zalo, Office, VS Code, Node, OneDrive, Wallpaper Engine, RivaTuner (RTSS), Widgets, Phone Link, Claude…
 - **Giữ lại:** Steam, Riot (LMHT/Valorant/Vanguard), anti-cheat, driver card/âm thanh/touchpad/chuột, bộ gõ tiếng Việt, Discord (voice chat), MSI Afterburner, Lossless Scaling.
@@ -45,6 +47,8 @@ One button that closes every app and background service so your games (e.g. Elde
 ## Usage
 Double-click `CheDoGame.bat` (it asks for Admin rights) → click **TAT HET DE CHOI GAME** ("close everything to play").
 When done, click **Choi xong - bat lai nhu cu** ("done playing – restore everything").
+
+**Desktop icon:** right-click CheDoGame.bat → *Send to → Desktop (create shortcut)* → right-click the shortcut → *Properties → Change Icon* → pick CheDoGame.ico.
 
 ## What it does
 - Closes open apps + third-party background apps, e.g. browsers (Edge, Chrome, Brave, Opera, Coc Coc), Zalo, Office, VS Code, Node, OneDrive, Wallpaper Engine, RivaTuner (RTSS), Widgets, Phone Link, Claude…

@@ -1,6 +1,6 @@
 ﻿# Che do Game - 1 nut tat het app/dich vu ngam de choi game muot nhat.
 # Tac gia: Tuan Viet - https://github.com/TuanVietCoder/closeall
-# Chay bang CheDoGame.bat (tu xin quyen Admin). Sua danh sach duoi day theo y ban.
+# Chay bang icon 'Che do Game' ngoai Desktop hoac CheDoGame.bat (tu xin quyen Admin). Sua danh sach duoi day theo y ban.
 
 # Khong bao gio tat: he thong, launcher/anti-cheat, driver, cong cu choi game
 $giuLai = @(
@@ -44,18 +44,19 @@ function Lay-DanhSach {
   }
 }
 
-function Tat-Het {
-  $ds = @(Lay-DanhSach)
-  # Dong nhe nhang truoc (nhu bam X), cho 5s roi moi ep tat
+function Tat-Het($ds) {
+  # Dong nhe nhang truoc (nhu bam X), cho toi da 5s roi moi ep tat
   foreach ($p in $ds) { try { [void]$p.CloseMainWindow() } catch {} }
   # Dong cac cua so thu muc File Explorer (giu lai taskbar/Start)
   try { (New-Object -ComObject Shell.Application).Windows() | ForEach-Object { $_.Quit() } } catch {}
   $het = (Get-Date).AddSeconds(5)
-  while ((Get-Date) -lt $het) { [Windows.Forms.Application]::DoEvents(); Start-Sleep -Milliseconds 100 }
+  while ((Get-Date) -lt $het -and ($ds | Where-Object { -not $_.HasExited })) {
+    [Windows.Forms.Application]::DoEvents(); Start-Sleep -Milliseconds 200
+  }
   foreach ($p in $ds) { Stop-Process -Id $p.Id -Force -ErrorAction SilentlyContinue }
 
   $dv = @(Get-Service $dichVu -ErrorAction SilentlyContinue | Where-Object Status -eq 'Running')
-  $dv | Stop-Service -Force -ErrorAction SilentlyContinue
+  $dv | Stop-Service -Force -NoWait -ErrorAction SilentlyContinue   # dung song song, khong cho tung cai
 
   $nguon = [regex]::Match((powercfg /getactivescheme), '[0-9a-fA-F-]{36}').Value
   powercfg /setactive SCHEME_MIN   # High Performance
@@ -65,7 +66,6 @@ function Tat-Het {
     @{ dichVu = @($dv.Name); nguon = $nguon } | ConvertTo-Json | Set-Content $state
   }
 
-  [GC]::Collect()
   return ($ds.ProcessName | Sort-Object -Unique)
 }
 
@@ -82,6 +82,8 @@ $form = New-Object Windows.Forms.Form -Property @{
   Text = 'Che do Game - by Tuan Viet'; Size = '380,280'; StartPosition = 'CenterScreen'
   FormBorderStyle = 'FixedDialog'; MaximizeBox = $false
 }
+$ico = Join-Path $PSScriptRoot 'CheDoGame.ico'
+if (Test-Path $ico) { $form.Icon = New-Object Drawing.Icon $ico, 32, 32 }
 $nut = New-Object Windows.Forms.Button -Property @{
   Text = "🎮  TAT HET DE CHOI GAME"; Dock = 'Fill'
   Font = New-Object Drawing.Font('Segoe UI', 18, [Drawing.FontStyle]::Bold)
@@ -93,13 +95,14 @@ $nutBatLai = New-Object Windows.Forms.Button -Property @{
 }
 
 $nut.Add_Click({
-  $ten = (Lay-DanhSach).ProcessName | Sort-Object -Unique
+  $ds = @(Lay-DanhSach)   # quet 1 lan, dung lai khi tat
+  $ten = $ds.ProcessName | Sort-Object -Unique
   $ok = [Windows.Forms.MessageBox]::Show($form,
     "Se tat $(@($ten).Count) app:`n$($ten -join ', ')`n`n+ Tam dung dich vu ngam (Update, Search, SysMain...)`n+ Bat High Performance`n`nHay LUU cong viec truoc! Tiep tuc?",
     'Che do Game', 'YesNo', 'Warning')
   if ($ok -ne 'Yes') { return }
   $nut.Enabled = $false; $nut.Text = 'Dang tat...'; [Windows.Forms.Application]::DoEvents()
-  $da = Tat-Het
+  $da = Tat-Het $ds
   [void][Windows.Forms.MessageBox]::Show($form, "Da tat $(@($da).Count) app + dich vu ngam. Chuc choi vui!", 'Che do Game')
   $nut.Text = "🎮  DA BAT CHE DO GAME"; $nut.Enabled = $true
 })
